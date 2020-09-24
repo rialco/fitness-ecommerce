@@ -1,0 +1,52 @@
+const addon = {
+  name: "page price addition",
+  type: "adder",
+  amount: 3000,
+  conditionalAmount: 0,
+  priority: 2,
+};
+
+const addon2 = {
+  name: "single spacing",
+  type: "multiplier",
+  amount: 2,
+  conditionalAmount: 0,
+  priority: 1,
+};
+
+const addon3 = {
+  name: "48 hours",
+  type: "adder",
+  amount: 4000,
+  conditionalAmount: 6000,
+  priority: 2,
+};
+
+const product = {
+  name: "Tarea colegio",
+  type: "single",
+  price: 11000,
+  discountedPrice: -1,
+  productAddons: [addon, addon2, addon3],
+  galleryUrls: [],
+  stock: 0,
+  alwaysOnStock: true,
+  weight: 0,
+  dimensions: {
+    height: 0,
+    width: 0,
+    length: 0,
+  },
+  shippingClass: "",
+  active: true,
+  attributes: [],
+  variants: [],
+  categories: [],
+  tags: [],
+  relatedProducts: [],
+};
+
+const attribute = {
+  name: "",
+  options: [],
+};

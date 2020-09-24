@@ -1,0 +1,26 @@
+.contact {
+  .contact-hero {
+    background-image: url("../assets/2064-2.jpg");
+  }
+
+  .contact-form {
+    width: 100%;
+    padding: 20px;
+
+    .MuiFormControl-root {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    .two-column {
+      width: 45%;
+      margin-right: 20px;
+    }
+    .btn {
+      margin-top: 20px;
+      background-color: #fd0054;
+      font-size: 20px;
+      font-weight: 900;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,90 @@
+$main-color: #fd0054;
+
+.user-subpanel {
+  position: relative;
+  background-color: white;
+  border-radius: 10px;
+  text-align: left;
+  border: 1px solid rgba($color: #000000, $alpha: 0.15);
+  padding: 20px;
+  margin: 4px;
+
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.user-subpanel .icon-container {
+  width: 20%;
+  margin-right: 20px;
+}
+
+.user-subpanel .info-container {
+  width: 65%;
+}
+
+.flex-info .info-container {
+  width: unset;
+  flex: 1;
+}
+
+.user-subpanel .icon-container svg {
+  font-size: 60px;
+  color: $main-color;
+}
+
+.user-subpanel ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.user-subpanel .info-container li {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.user-subpanel .info-container li b {
+  font-weight: bold;
+  margin-right: 4px;
+}
+
+.user-subpanel .user-roles {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+}
+
+.user-subpanel .user-roles svg {
+  font-size: 16px;
+  margin-right: 4px;
+  cursor: pointer;
+}
+
+.user-subpanel .user-roles .user-admin {
+  color: $main-color;
+}
+
+.user-subpanel .user-roles .is-user-provider {
+  color: #248f24;
+}
+.user-subpanel .user-roles .not-user-provider {
+  color: #8c8c8c;
+}
+
+.user-subpanel-multiple {
+  min-width: 400px;
+  flex-basis: 0; /* default value */
+  flex-grow: 1;
+  max-width: 49%;
+}
+
+// MOBILE SUPPORT
+.user-subpanel-single {
+  max-width: none;
+  margin-left: 0px;
+  margin-right: 0px;
+  //Prevents overflow, allows shrinking
+  min-width: 100%;
+}

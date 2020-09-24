@@ -1,0 +1,71 @@
+.online-programs {
+  .online-programs-hero {
+    background-image: url("../assets/4760-2.jpg");
+    .hero-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.9),
+        rgba(0, 0, 0, 0.4)
+      );
+    }
+  }
+
+  .program-card {
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    text-align: center;
+    position: relative;
+
+    .program-img-container {
+      position: relative;
+
+      .rounded-icon-container {
+        top: 40%;
+        height: 80px;
+        width: 80px;
+        svg {
+          font-size: 40px;
+        }
+      }
+    }
+
+    img {
+      width: 100%;
+    }
+    .program-content {
+      padding: 20px;
+      min-height: 700px;
+      display: flex;
+      align-items: flex-end;
+
+      h2 {
+        font-size: 40px;
+      }
+      h5 {
+        font-size: 16px;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+      }
+
+      .btn {
+        margin: 20px 0;
+        background-color: #fd0054;
+        font-size: 20px;
+        font-weight: 900;
+        width: 100%;
+        margin-bottom: 0;
+      }
+
+      h6 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      ul {
+        list-style-type: none;
+        li {
+          margin-bottom: 4px;
+        }
+      }
+    }
+  }
+}

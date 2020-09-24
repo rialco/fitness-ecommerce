@@ -1,0 +1,379 @@
+$main-color: #e4024d;
+
+//////////////////////////////////////////////////////////////////
+/////// Contenedor de paneles interiores en el panel-container
+/////////////////////////////////////////////////////////////////
+
+.subpanel-container {
+  background-color: white;
+  border-radius: 10px;
+  text-align: left;
+  border: 1px solid rgba($color: #000000, $alpha: 0.15);
+  padding: 30px;
+  height: max-content;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.subpanel-container button a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.subpanel-flex1 {
+  flex-grow: 1;
+}
+
+.subpanel-flex2 {
+  flex-grow: 2;
+}
+
+.subpanel-flex3 {
+  flex-grow: 3;
+}
+
+.panel-content .icon-container {
+  font-size: 100px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.panel-content .width100 {
+  height: min-content;
+}
+
+.panel-content p {
+  margin: 4px 0px;
+}
+
+.panel-content svg {
+  color: $main-color;
+}
+
+.panel-content p b {
+  font-weight: bold;
+}
+
+.publish-panel button {
+  background-color: #48b863;
+}
+
+.subpanel-container .input-margin-bot {
+  margin-bottom: 14px;
+}
+
+///////////////////////////////////////////////////////////
+////////// PROFILE
+///////////////////////////////////////////////////////////
+
+.profile-card {
+  width: 50%;
+}
+
+.editable-content-container {
+  height: min-content;
+  margin-top: 20px;
+}
+
+.editable-content-container span {
+  margin-bottom: 2px;
+}
+
+.editable-content-container svg {
+  color: $main-color;
+}
+
+///////////////////////////////////////////////////////////
+////////// TABLA GENERAL
+///////////////////////////////////////////////////////////
+
+.panel-table {
+  width: 100%;
+  border-spacing: 0;
+  overflow-x: auto;
+}
+
+.panel-table thead td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+  font-weight: bold;
+
+  margin: 0;
+  background-color: #ececec;
+}
+
+.panel-table tbody td {
+  padding: 10px;
+  border-bottom: 1px solid rgba($color: #000000, $alpha: 0.1);
+  border-top: 0;
+  width: 25%;
+}
+.checkbox-table tr td:first-child {
+  width: 5%;
+}
+
+.subpanel-container .delete-btn {
+  background-color: #b42c2c;
+  font-weight: bolder;
+}
+
+.subpanel-container .delete-btn:hover {
+  background-color: #b42c2c;
+  font-weight: bolder;
+}
+
+.subpanel-container .left-margin20 {
+  margin-left: 20px;
+}
+
+.subpanel-container .margin-bot20 {
+  margin-bottom: 20px;
+}
+
+.subpanel-container .hidden {
+  display: none;
+}
+
+///////////////////////////////////////////////////////////
+////////// TABLA DE ADDONS
+///////////////////////////////////////////////////////////
+
+.product-editor-content h3 {
+  font-weight: 400;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+
+.product-editor-content .MuiTextField-root {
+  margin-bottom: 10px;
+}
+
+.product-editor-content .MuiFormLabel-root {
+  font-family: "Barlow Semi Condensed", sans-serif;
+  letter-spacing: 0;
+}
+
+.addon-container {
+  margin-bottom: 40px;
+}
+
+.addon-container .panel-table td {
+  display: table-cell;
+  width: 150px;
+  vertical-align: middle;
+}
+
+.addon-container .panel-table td.small {
+  width: 20px;
+}
+
+.addon-container .panel-table td:first-child {
+  width: 20px;
+}
+
+///////////////////////////////////////////////////////////
+////////// ORDER DETAILS
+///////////////////////////////////////////////////////////
+
+.order-details-panel {
+  width: 50%;
+}
+
+.order-details-panel-fullwidth {
+  width: 100%;
+}
+
+.order-title-container h1 {
+  margin-bottom: 0;
+  font-size: 30px;
+}
+
+.order-title-container {
+  margin-bottom: 10px;
+}
+
+.order-details-container p {
+  margin-bottom: 0;
+}
+
+.order-details-info ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.order-details-info ul li {
+  list-style: none;
+  text-transform: capitalize;
+}
+
+.provider-files {
+  background-color: rgba($color: #d8d8d8, $alpha: 0.1);
+  border: 1px solid rgba($color: #d8d8d8, $alpha: 0.5);
+  width: 100%;
+  padding: 20px;
+}
+
+.provider-files h2 {
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.transaction-links {
+  padding: 10px;
+  padding-left: 0;
+}
+
+.transaction-links a {
+  display: block;
+}
+
+.highlighted-detail {
+  width: max-content;
+  padding: 4px 10px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: rgba($color: #ffffff, $alpha: 0.9);
+}
+
+.accent-detail {
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.grey-detail {
+  background-color: rgba($color: #000000, $alpha: 0.35);
+}
+
+.brand-detail {
+  background-color: $main-color;
+}
+
+.green-detail {
+  background-color: #1aab59;
+}
+
+.userRole-panel .approveBtn {
+  background-color: #1aab59;
+}
+
+.userRole-panel {
+  margin-top: 20px;
+  margin-left: 0;
+  background-color: rgba($color: #d8d8d8, $alpha: 0.1);
+  border: 1px solid rgba($color: #d8d8d8, $alpha: 0.5);
+  border-radius: 6px;
+  width: 49%;
+}
+
+.userRole-panel h2 {
+  margin-top: 0;
+  margin-bottom: 6px;
+}
+
+.order-contacts-container p {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.order-contacts-container p:last-child {
+  margin-bottom: 20px;
+}
+
+.rating-container h4 {
+  margin-bottom: 10px;
+}
+
+.rating-container .rating-icon {
+  width: 30px;
+  margin-right: 4px;
+}
+
+///////////////////////////////////////////////////////////
+////////// ORDER MESSAGES
+///////////////////////////////////////////////////////////
+
+.order-chat-container {
+  width: 100%;
+  background-color: rgba($color: #d8d8d8, $alpha: 0.1);
+  border: 1px solid rgba($color: #d8d8d8, $alpha: 0.5);
+  padding: 20px;
+  border-radius: 6px;
+}
+.order-messages-container {
+  width: 100%;
+  height: 250px;
+}
+
+.msg-container {
+  background-color: white;
+  width: max-content;
+  padding: 4px 10px;
+  padding-left: 20px;
+  margin-bottom: 6px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.2);
+  border-radius: 6px;
+  max-width: 80%;
+}
+
+.my-msg {
+  margin-left: auto;
+  margin-right: 0;
+  padding-left: 10px;
+  padding-right: 20px;
+}
+
+.msg-container p {
+  margin: 0;
+}
+
+.msg-details {
+  font-size: 10px;
+}
+
+.msg-container .msg-content {
+  margin-left: 10px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+}
+
+.order-input-container {
+  margin-top: 10px;
+}
+
+.order-chat-container .input-field {
+  background-color: white;
+}
+
+.order-chat-container .MuiTextField-root {
+  margin-bottom: 0px;
+  margin-right: 4px;
+}
+
+.order-input-container .MuiButton-contained {
+  background-color: $main-color;
+  color: white;
+}
+
+@media screen and (max-width: 1024px) {
+  .order-details-panel {
+    width: 100%;
+  }
+  .panel-container {
+    padding: 20px;
+  }
+  .subpanel-container {
+    padding: 14px;
+  }
+  .profile-card {
+    width: 100%;
+  }
+  .userRole-panel {
+    width: 100%;
+    margin: 10px 0;
+  }
+}

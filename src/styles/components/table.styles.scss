@@ -1,0 +1,46 @@
+.table-footer {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  height: fit-content;
+}
+
+.footer-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+  width: 3ch;
+  height: 3ch;
+}
+
+.footer-text {
+  color: gray;
+  white-space: nowrap;
+  margin-right: 60px;
+}
+
+.no-margin {
+  margin-right: 0;
+}
+
+.footer-field {
+  width: 10ch;
+}
+
+.table-container {
+  border-radius: 5px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+
+.table-container .MuiTab-wrapper {
+  text-align: left;
+  align-items: flex-start;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}

@@ -1,0 +1,102 @@
+.about {
+  .about-hero {
+    background-image: url("../assets/1168-2.jpg");
+  }
+
+  .icon-column {
+    text-align: center;
+    padding: 20px;
+
+    .icon-container {
+      width: 100px;
+      margin: auto;
+    }
+
+    h4 {
+      font-size: 20px;
+      margin: 10px 0;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+  }
+
+  .section ~ .about-third {
+    background-color: black;
+    color: white;
+    padding: 20px;
+  }
+
+  .team-card {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 400px;
+    position: relative;
+
+    .team-overlay {
+      display: flex;
+      height: 100%;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.85),
+        rgba(0, 0, 0, 0.4)
+      );
+      overflow: hidden;
+      position: relative;
+      text-align: center;
+      border: 0;
+      transition: 0.3s ease;
+
+      h4 {
+        transition: 0.5s ease;
+      }
+      .content {
+        h5 {
+          letter-spacing: 3px;
+          margin-bottom: 10px;
+        }
+
+        position: absolute;
+        opacity: 0;
+        transition: 0.5s ease;
+        bottom: 0;
+        left: 20px;
+        right: 20px;
+      }
+    }
+
+    .team-overlay:hover {
+      border: 4px solid white;
+
+      h4 {
+        margin-bottom: 80px;
+      }
+      .content {
+        display: block;
+        opacity: 1;
+        bottom: 20px;
+      }
+    }
+  }
+
+  .card1 {
+    background-image: url("../assets/trainer-1.jpg");
+  }
+
+  .card2 {
+    background-image: url("../assets/2064-2.jpg");
+  }
+
+  .card3 {
+    background-image: url("../assets/4608-2.jpg");
+  }
+
+  .section ~ .about-fourth {
+    background: linear-gradient(to bottom right, #fd0054, #ffac41);
+    color: white;
+    padding: 100px;
+  }
+}

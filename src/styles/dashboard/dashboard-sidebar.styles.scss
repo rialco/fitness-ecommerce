@@ -1,0 +1,106 @@
+$main-color: #e4024d;
+$sidebar-background: #1f1f1f;
+$panel-background: #f4f6f8;
+
+.dashboard-sidebar-container {
+  min-width: 230px;
+  background-color: $sidebar-background;
+  color: white;
+  padding-left: 0px;
+  padding-top: 20px;
+  margin: 0;
+  min-height: calc(100vh - 60px);
+
+  min-width: 17%;
+  max-width: 17%;
+
+  transition: 0.3s;
+}
+
+.dashboard-nav-container h3 {
+  border-bottom: 1px solid rgba($color: #fff, $alpha: 0.2);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-left: 40px;
+}
+
+.dashboard-nav-container ul {
+  margin: 0;
+  list-style: none;
+  text-align: left;
+  padding: 0;
+  margin-bottom: 20px;
+}
+
+.dashboard-nav-container ul li {
+  display: flex;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+.dashboard-nav-container ul li svg {
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.dashboard-nav-container ul li a {
+  text-decoration: none;
+  color: rgba($color: #fff, $alpha: 0.85);
+  vertical-align: middle;
+}
+
+.dashboard-nav-section {
+  margin-bottom: 40px;
+}
+
+.dashboard-nav-section ul li {
+  padding-left: 40px;
+}
+
+.clickable {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+.product-sublist {
+  margin-left: 20px;
+  font-size: 14px;
+}
+
+.dashboard-nav-container ul .product-sublist li {
+  margin-bottom: 6px;
+}
+
+.expandable-item-icon {
+  margin-left: 4px;
+}
+
+.isSelected {
+  background-color: $main-color;
+  padding: 6px;
+  padding-left: 6px;
+  transition: 0.2s;
+}
+
+.hidden-sidebar {
+  position: relative;
+  opacity: 0;
+  min-width: 0;
+  width: 0;
+}
+
+.mobile-sidebar {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  width: 70%;
+  max-width: 70%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+}

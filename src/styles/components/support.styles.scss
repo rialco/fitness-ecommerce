@@ -1,0 +1,26 @@
+.form-container {
+  display: flex;
+  flex: 1;
+  width: 100% !important;
+}
+
+.single-field-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.id-field-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin: 0;
+  margin-bottom: 16px;
+}
+
+.support-text-container {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-justify: newspaper;
+}

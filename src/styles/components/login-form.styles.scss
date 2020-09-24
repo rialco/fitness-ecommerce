@@ -1,0 +1,33 @@
+.login-form {
+  .input-group {
+    width: 100%;
+  }
+
+  .input-group .MuiTextField-root {
+    margin-bottom: 16px;
+    width: 100%;
+  }
+
+  .input-group .MuiButtonBase-root {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .facebook-btn {
+    background-color: #4267b2;
+    color: white;
+    font-weight: 700;
+    text-transform: initial;
+    font-size: 16px;
+
+    &:hover {
+      background-color: #4267b2;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .input-group .MuiTextField-root {
+      width: 30ch;
+    }
+  }
+}

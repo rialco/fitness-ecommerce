@@ -1,0 +1,26 @@
+.loader-modal-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+
+  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loader-modal-container img {
+  display: block;
+  margin: auto;
+}
+
+.visible {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}

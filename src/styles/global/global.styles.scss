@@ -1,0 +1,854 @@
+$main-color: #fd0054;
+$grey-background: rgba(
+  $color: #323232,
+  $alpha: 0.05,
+);
+
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;0,600;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Barlow Semi Condensed", sans-serif;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  max-width: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 900;
+  font-style: italic;
+}
+
+h5,
+h6 {
+  font-weight: 400;
+  font-style: italic;
+}
+
+h1 {
+  font-size: 70px;
+}
+
+h2 {
+  font-size: 60px;
+}
+
+h3 {
+  font-size: 50px;
+}
+
+h4 {
+  font-size: 40px;
+}
+
+h5 {
+  font-size: 22px;
+  letter-spacing: 10px;
+}
+
+h6 {
+  font-size: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+b {
+  font-weight: bold;
+}
+
+p b {
+  font-weight: bold;
+}
+
+header {
+  position: relative;
+  z-index: 100;
+}
+
+.upper-nav-container {
+  height: 40px;
+  background-color: #fd0054;
+  width: 100%;
+}
+
+.upper-nav {
+  width: 80%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .upper-nav-link {
+    display: flex;
+    align-items: center;
+  }
+
+  svg {
+    color: white;
+    margin-right: 6px;
+    font-size: 1.3em;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+  }
+}
+
+.main-nav-container {
+  position: absolute;
+  width: 100%;
+  height: 100px;
+  margin-left: auto;
+  background: transparent;
+
+  .main-nav-border {
+    background-color: white;
+    height: 1px;
+    width: 85%;
+    margin: auto;
+  }
+}
+
+.main-nav {
+  display: flex;
+  width: 80%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+
+  .logo-container img {
+    height: 60px;
+  }
+
+  .nav-links {
+    right: 0;
+    float: right;
+  }
+
+  .nav-links a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    text-transform: uppercase;
+  }
+}
+
+.hero {
+  height: 100vh;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+
+  .hero-overlay {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0)
+    );
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+
+    .hero-content {
+      color: white;
+      text-align: center;
+      position: fixed;
+      left: 0;
+      top: 40vh;
+      right: 0;
+      z-index: 12;
+
+      h2 {
+        font-size: 100px;
+        text-shadow: 3px 3px 6px rgba($color: #000000, $alpha: 0.8);
+        text-transform: uppercase;
+        letter-spacing: 4px;
+      }
+
+      h5 {
+        letter-spacing: 10px;
+      }
+
+      .hero-btn {
+        margin-top: 20px;
+        background-color: #fd0054;
+        font-size: 20px;
+        font-weight: 900;
+        width: 20%;
+      }
+    }
+  }
+}
+
+.page-content {
+  position: relative;
+  z-index: 11;
+}
+
+.skew-cc {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  left: 0px;
+  background: linear-gradient(to right bottom, rgba(0, 0, 0, 0) 49%, #fff 50%),
+    linear-gradient(-50deg, #ffffff 16px, rgba(0, 0, 0, 0) 0);
+  margin-top: -100px;
+  z-index: 20;
+}
+
+.skew-c {
+  position: relative;
+  width: 100%;
+  height: 90px;
+  left: 0px;
+  background: linear-gradient(to right top, #fff 49%, rgba(0, 0, 0, 0) 50%);
+  margin-top: -90px;
+  z-index: 20;
+}
+
+.skew-c ~ .grey-bg {
+  margin-top: -90px;
+  background: linear-gradient(
+    to right top,
+    $grey-background 49%,
+    rgba(0, 0, 0, 0) 50%
+  );
+}
+
+.skew-c ~ .bottom {
+  margin-top: 0px;
+  margin-bottom: -90px;
+  background: linear-gradient(to left bottom, white 49%, rgba(0, 0, 0, 0) 50%);
+}
+
+.skew-c ~ .black-bg {
+  margin-top: 0px;
+  background: linear-gradient(to right top, rgba(0, 0, 0, 0) 49%, white 50%);
+}
+
+.primary-template {
+  .hero {
+    z-index: 1;
+    height: 45vh;
+
+    .hero-content {
+      color: white;
+      text-align: center;
+      position: fixed;
+      left: 0;
+      top: 25vh;
+      right: 0;
+      z-index: 100;
+
+      h2 {
+        font-size: 60px;
+        text-shadow: 3px 3px 6px rgba($color: #000000, $alpha: 0.8);
+        text-transform: uppercase;
+      }
+
+      h5 {
+        letter-spacing: 10px;
+      }
+    }
+  }
+
+  .page-content {
+    margin-top: calc(45vh - 40px);
+    z-index: 10;
+
+    .section {
+      background-color: white;
+    }
+  }
+
+  .skew-c {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    margin-top: -50px;
+  }
+}
+
+.top-margin {
+  margin-top: 20px;
+}
+
+.homepage,
+.primary-template {
+  .flex-panel {
+    position: static;
+
+    flex-wrap: nowrap;
+  }
+  .icon-container {
+    padding: 20px;
+    background-color: #fd0054;
+    background-color: #ffac41;
+    background: linear-gradient(to bottom right, #fd0054, #ffac41);
+  }
+
+  .icon-container span {
+    color: white;
+  }
+
+  .rounded-icon-container {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border-radius: 100%;
+    background: linear-gradient(to bottom right, #fd0054, #ffac41);
+
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+
+    animation: pulse 1.5s infinite;
+
+    svg {
+      color: white;
+      font-size: 60px;
+    }
+  }
+
+  [class^="flaticon-"]:before {
+    font-size: 40px;
+    margin-left: 0;
+  }
+}
+
+.section .white-cta-btn {
+  background-color: transparent;
+  border: 3px solid white;
+  color: white;
+  margin-top: 20px;
+  width: 30%;
+  padding: 10px;
+  box-shadow: none;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 0 rgba(253, 0, 84, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 20px rgba(253, 0, 84, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    transform: translateX(-50%);
+    box-shadow: 0 0 0 0 rgba(253, 0, 84, 0);
+  }
+}
+
+////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////
+
+.input-group .MuiButton-containedPrimary {
+  font-weight: 700;
+  text-transform: initial;
+}
+
+.input-group .MuiButton-containedSecondary {
+  font-weight: 700;
+  text-transform: initial;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.fit-to-children {
+  width: fit-content;
+  height: fit-content;
+}
+
+.input-field {
+  background-color: white;
+}
+
+.input-field .MuiFormHelperText-contained {
+  color: red;
+}
+
+.global-btn .MuiButton-label {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.stack-items-container {
+  margin: 10px 0;
+}
+
+.padding10 {
+  padding: 10px;
+}
+
+.padding30 {
+  padding: 30px;
+}
+
+.margin10 {
+  margin: 10px;
+}
+
+.margin-top20 {
+  margin-top: 20px;
+}
+
+.margin-bot20 {
+  margin-bottom: 20px;
+}
+
+.margin-left20 {
+  margin-left: 20px;
+}
+
+.margin-right20 {
+  margin-right: 20px;
+}
+
+.width10 {
+  width: 10%;
+}
+
+.width20 {
+  width: 20%;
+}
+
+.width30 {
+  width: 30%;
+}
+
+.width33 {
+  width: 33%;
+}
+
+.width45 {
+  width: 45%;
+}
+
+.width50 {
+  width: 50%;
+}
+
+.width65 {
+  width: 65%;
+}
+
+.width70 {
+  width: 70%;
+}
+
+.width80 {
+  width: 80%;
+}
+
+.width90 {
+  width: 90%;
+}
+
+.width100 {
+  width: 100%;
+}
+
+.divider100 {
+  width: 100%;
+  height: 2px;
+  background-color: $main-color;
+}
+
+.divider90 {
+  width: 90%;
+  height: 2px;
+  background-color: $main-color;
+}
+
+.disp-flex {
+  display: flex;
+  height: 20px;
+}
+
+.divider50 {
+  width: 50%;
+}
+
+.inner-divider {
+  height: 1px;
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  margin: 10px 0;
+}
+
+.flex-panel {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.nowrap {
+  flex-wrap: nowrap;
+}
+
+.flex-column {
+  flex-direction: column;
+  width: inherit;
+}
+
+.flex-ver-center {
+  align-items: center;
+}
+
+.flex-hor-center {
+  justify-content: center;
+}
+
+.flex-hor-evenly {
+  justify-content: space-evenly;
+}
+
+.flex-hor-left {
+  justify-content: flex-start;
+}
+
+.flex-hor-right {
+  justify-content: flex-end;
+}
+
+.flex-end {
+  align-items: flex-end;
+}
+
+.overflow-panel-x {
+  overflow-x: auto;
+}
+
+.overflow-panel-y {
+  overflow-y: auto;
+}
+
+.float-right-centered {
+  margin-left: auto;
+  align-self: center;
+}
+
+.stack-items-container p {
+  margin-bottom: 0;
+  margin-top: 0;
+  font-size: 12px;
+}
+
+.inline {
+  display: inline;
+}
+
+.bottom-shadow {
+  border-radius: 5px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+///////////////////////////////////////////////////////////
+////////// MODAL
+///////////////////////////////////////////////////////////
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: rgba($color: #000000, $alpha: 0.3);
+}
+
+.modal-box {
+  position: relative;
+  height: max-content;
+  width: max-content;
+  background-color: white;
+  z-index: 101;
+  overflow-y: auto;
+  padding: 30px;
+  word-wrap: break-word;
+  text-align: center;
+}
+
+.modal-box h3 {
+  max-width: 30vw;
+}
+
+.modal-box p {
+  max-width: 30vw;
+  margin-bottom: 40px;
+}
+
+.modal-box .MuiButtonBase-root {
+  width: 30vw;
+  background-color: #1aab59;
+
+  .MuiButton-label {
+    font-weight: bold;
+  }
+}
+
+//////////////////////////////////////////////////////////////////
+///////   TABS
+/////////////////////////////////////////////////////////////////
+
+.MuiTabs-root {
+  margin-bottom: 20px;
+  justify-self: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.MuiTabs-root .MuiTab-wrapper {
+  font-weight: bold;
+  span {
+    font-weight: bold;
+  }
+}
+
+.margin-bottom-0 {
+  margin-bottom: 0;
+}
+
+.MuiTabs-root .Mui-disabled {
+  display: none;
+}
+
+///////////////////////////////////////////////////////////
+////////// PAYMENT PANEL
+///////////////////////////////////////////////////////////
+
+.payment-container {
+  width: 30%;
+}
+
+.payment-container .MuiFormControl-root {
+  width: 100%;
+}
+
+.payment-container .MuiTabs-flexContainer .MuiTab-root:not(:first-child) {
+}
+
+.payment-container .MuiTab-wrapper {
+  text-align: left;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.payment-container .MuiTab-root {
+  line-height: 1;
+  min-height: 0;
+}
+
+.payment-container .MuiFormControl-root {
+  margin-bottom: 16px;
+}
+
+.payment-container .tabLogo {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.payment-container .paymentBtn {
+  width: 100%;
+
+  span {
+    font-weight: bold;
+  }
+}
+
+.transaction-info-list ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: 20px;
+  border: 1px solid rgba($color: #000000, $alpha: 0.08);
+}
+
+.transaction-info-list ul li {
+  padding: 10px;
+  padding-bottom: 5px;
+  background-color: rgba($color: #000000, $alpha: 0.09);
+}
+
+.transaction-info-list ul li:nth-child(odd) {
+  background-color: white;
+}
+
+.payment-response h3 {
+  text-align: center;
+}
+
+.payment-response img {
+  display: block;
+  margin: auto;
+}
+
+.green-transaction {
+  color: green;
+}
+
+.red-transaction {
+  color: red;
+}
+
+///////////////////////////////////////////////////////////
+////////// ANIMATIONS
+///////////////////////////////////////////////////////////
+
+.fade-in {
+  animation: fadeIn ease 0.5s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+///////////////////////////////////////////////////////////
+////////// MOBILE
+///////////////////////////////////////////////////////////
+
+@media screen and (max-width: 1024px) {
+  .payment-container {
+    width: 95%;
+  }
+
+  .float-right-centered {
+    display: flex;
+    margin-bottom: 20px;
+  }
+
+  .float-right-centered .margin-left20 {
+    margin: 0;
+    margin-right: 6px;
+  }
+
+  .modal-box h3 {
+    max-width: 80vw;
+  }
+
+  .modal-box p {
+    max-width: 80vw;
+  }
+
+  .modal-box .MuiButtonBase-root {
+    width: 80vw;
+    background-color: #1aab59;
+
+    .MuiButton-label {
+      font-weight: bold;
+    }
+  }
+}

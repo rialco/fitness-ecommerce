@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,400;0,600;1,700;1,900&display=swap");
+
+$grey-background: rgba(
+  $color: #323232,
+  $alpha: 0.05,
+);
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 900;
+  font-style: italic;
+}
+
+h5,
+h6 {
+  font-weight: 400;
+  font-style: italic;
+}
+
+h1 {
+  font-size: 70px;
+}
+
+h2 {
+  font-size: 60px;
+}
+
+h3 {
+  font-size: 50px;
+}
+
+h4 {
+  font-size: 40px;
+}
+
+h5 {
+  font-size: 22px;
+  letter-spacing: 10px;
+}
+
+h6 {
+  font-size: 20px;
+}
+
+header {
+  position: relative;
+  z-index: 100;
+}
+
+.flex-panel {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flex-ver-center {
+  align-items: center;
+}

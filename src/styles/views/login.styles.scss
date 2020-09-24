@@ -1,0 +1,91 @@
+$main-color: #fd0054;
+
+.login-page-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: -200px 30%;
+}
+
+.login-bg {
+  background-image: url("../../assets/isa_q.jpg");
+}
+
+.regiter-bg {
+  background-image: url("../../assets/isa_q02.jpg");
+}
+
+.checkout-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 30, 86, 1) 0%,
+    rgba(255, 172, 65, 1) 100%
+  );
+}
+
+.checkout-bg .login-form-container {
+  width: 50%;
+}
+
+.login-page-overlay {
+  width: 100%;
+  height: 100%;
+  background-color: rgba($color: #000000, $alpha: 0.15);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 0.3449754901960784) 0%,
+    rgba(253, 0, 84, 0.3393732492997199) 100%
+  );
+}
+
+.login-form-container {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #ffffff;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
+  border-left: 1px solid rgba($color: #000000, $alpha: 0.3);
+  z-index: 10;
+  box-shadow: rgba(0, 0, 0, 0.35) -7px 0px 17px -9px;
+}
+
+.login-form-container .login-sidebar {
+  width: 70%;
+  margin-top: -100px;
+}
+
+.login-form-container h4 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.login-form-container .login-logo {
+  margin-bottom: 40px;
+}
+
+.login-text {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  .login-page-container {
+    width: 100%;
+  }
+  .login-form-container {
+    margin: 10px;
+    width: 90%;
+  }
+}

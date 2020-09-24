@@ -1,0 +1,43 @@
+.fields-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.multi-field {
+  flex: 1;
+  position: relative;
+}
+
+.multi-field .MuiFormControl-root {
+  width: 100%;
+  padding-right: 10px;
+  top: 3px;
+}
+
+#mui-component-select-gender {
+  text-align: left;
+  padding-left: 4px;
+}
+
+.nomargin {
+  margin: 0;
+}
+
+.multi-field-wbutton {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.submit-button-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.single-field-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  margin-bottom: 16px;
+}
