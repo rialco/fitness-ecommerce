@@ -6,7 +6,7 @@ import TabbedOrders from "../../tabbed-orders/tabbed-orders.component";
 import OrderManager from "../../../helpers/order-manager";
 
 const headCells = [
-  { id: "title", label: "Título", key: 1 },
+  { id: "ID", label: "ID", key: 1 },
   { id: "price", label: "Precio", key: 2 },
   { id: "createdAt", label: "Fecha de creación", key: 3 },
   { id: "paymentDate", label: "Fecha de pago", key: 4 },
@@ -14,13 +14,13 @@ const headCells = [
 
 const itemCells = [
   { id: "orderID", key: 0, type: "hiddenID" },
-  { id: "title", key: 1, type: "link", category: "orders" },
+  { id: "ID", key: 1, type: "link", category: "orders" },
   { id: "price", key: 2 },
   { id: "createdAt", key: 3 },
   { id: "paymentDate", key: 4 },
 ];
 
-const ORDERSTATES = ["orders", "suscriptions"];
+const ORDERSTATES = ["orders", "subscriptions"];
 
 const MyOrders = () => {
   const user = useContext(UserContext).user.currentUser;

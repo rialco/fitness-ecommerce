@@ -3,17 +3,26 @@ import React, {
   useState,
   useEffect,
   useRef,
-  useCallback,
+  //useCallback,
 } from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import moment from "moment";
-import TextField from "@material-ui/core/TextField";
+import {
+  InputAdornment,
+  TextField,
+  IconButton,
+  Button,
+} from "@material-ui/core";
 import SendIcon from "@material-ui/icons/Send";
 import { animateScroll } from "react-scroll";
-import { Button } from "@material-ui/core";
-import Rating from "react-rating";
-import starFull from "../../../assets/starFilled.svg";
-import starEmpty from "../../../assets/starEmtpy.svg";
+import DateRangeIcon from "@material-ui/icons/DateRange";
+import { DatePicker } from "@material-ui/pickers";
+import ClearIcon from "@material-ui/icons/Clear";
+
+import { makeStyles } from "@material-ui/core/styles";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
 
 import UserContext from "../../../contexts/user.context";
 import {
@@ -24,16 +33,33 @@ import {
   adminPaidOrder,
   getUserIDWithEmail,
   getUserInfoWithID,
-  getDownloadUrl,
+  //getDownloadUrl,
   adminApprovedOrder,
-  rateOrder,
+  //rateOrder,
 } from "../../../database/firebase";
 import { formatMoney } from "../../../helpers/input-validation.js";
 import Modal from "../../modal/modal.component";
 
+function getSteps() {
+  return ["Preparando pedido", "En camino", "Entregado"];
+}
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: "100%",
+  },
+  instructions: {
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(1),
+  },
+}));
+
 const OrderDetails = ({ match, history }) => {
   const userC = useContext(UserContext);
+  const classes = useStyles();
+  const steps = getSteps();
 
+  const [activeStep, setActiveStep] = React.useState(1);
   const [isVisible] = useState(true);
   const [orderDetails, setOrderDetails] = useState({});
   const [orderMessages, setOrderMessages] = useState([]);
@@ -50,20 +76,16 @@ const OrderDetails = ({ match, history }) => {
   const [orderContactInfo, setOrderContactInfo] = useState({
     userEmail: "",
     userPhone: "",
-    provEmail: "",
-    provPhone: "",
   });
-  const [orderFiles, setOrderFiles] = useState({
-    userFileUrl: "",
-    providerFileUrl: "",
-  });
+
+  const [dateFilter, setDate] = useState(null);
 
   const modalRef = useRef();
 
-  const handleRating = async (event) => {
-    const result = await rateOrder(event, match.params.orderID);
-    return result;
-  };
+  // const handleRating = async (event) => {
+  //   const result = await rateOrder(event, match.params.orderID);
+  //   return result;
+  // };
 
   const handleChange = (event) => {
     const target = event.target.name;
@@ -73,17 +95,17 @@ const OrderDetails = ({ match, history }) => {
     });
   };
 
-  const getFiles = useCallback(async () => {
-    let u = await getDownloadUrl(match.params.orderID, "user");
-    let p = await getDownloadUrl(match.params.orderID, "provider");
+  // const getFiles = useCallback(async () => {
+  //   let u = await getDownloadUrl(match.params.orderID, "user");
+  //   let p = await getDownloadUrl(match.params.orderID, "provider");
 
-    if (typeof p === "undefined") p = "";
-    if (typeof u === "undefined") u = "";
+  //   if (typeof p === "undefined") p = "";
+  //   if (typeof u === "undefined") u = "";
 
-    setOrderFiles((prevOrderFiles) => {
-      return { userFileUrl: u, providerFileUrl: p };
-    });
-  }, [match.params.orderID]);
+  //   setOrderFiles((prevOrderFiles) => {
+  //     return { userFileUrl: u, providerFileUrl: p };
+  //   });
+  // }, [match.params.orderID]);
 
   const getDeliveryDate = () => {
     if (orderDetails.paymentDate) {
@@ -91,6 +113,8 @@ const OrderDetails = ({ match, history }) => {
       deadline = deadline * 60 * 60 * 1000;
       deadline = deadline + orderDetails.paymentDate;
       deadline = moment(deadline).format("ddd DD/MM/YY hh:mm A");
+
+      deadline = moment(orderDetails.deliveryDate).format("ddd DD/MM/YY");
       return deadline;
     }
   };
@@ -119,20 +143,20 @@ const OrderDetails = ({ match, history }) => {
     updateDisabledInputs("message");
   };
 
-  const claimOrder = async () => {
-    updateDisabledInputs("claimBtn");
-    const result = await setProvider(
-      orderDetails.id,
-      match.params.orderState,
-      userC.user.currentUser.uid
-    );
+  // const claimOrder = async () => {
+  //   updateDisabledInputs("claimBtn");
+  //   const result = await setProvider(
+  //     orderDetails.id,
+  //     match.params.orderState,
+  //     userC.user.currentUser.uid
+  //   );
 
-    if (result) {
-      return history.push(`/dashboard/ordenes/inProcess/${orderDetails.id}`);
-    }
+  //   if (result) {
+  //     return history.push(`/dashboard/ordenes/inProcess/${orderDetails.id}`);
+  //   }
 
-    updateDisabledInputs("claimBtn");
-  };
+  //   updateDisabledInputs("claimBtn");
+  // };
 
   const updateDisabledInputs = (pInput) => {
     setDisabledInputs((prevDisabledInputs) => {
@@ -262,7 +286,7 @@ const OrderDetails = ({ match, history }) => {
 
   useEffect(() => {
     if (orderDetails.id) {
-      getFiles();
+      //getFiles();
 
       const messagesRef = firestore
         .collection("orderMessages")
@@ -300,7 +324,7 @@ const OrderDetails = ({ match, history }) => {
         unsubscribeTransactions();
       };
     }
-  }, [orderDetails.id, getFiles]);
+  }, [orderDetails.id]);
 
   useEffect(() => {
     const getContactDetails = async () => {
@@ -383,110 +407,32 @@ const OrderDetails = ({ match, history }) => {
         <div className="flex-panel">
           <div className="highlighted-detail brand-detail accent-detail margin-right20">
             {orderDetails.paymentDate ? (
-              <b>Entregar hasta {getDeliveryDate()}</b>
+              <b>Entrega aproximada {getDeliveryDate()}</b>
             ) : (
               <b>Pendiente de pago</b>
             )}
           </div>
           <div className="highlighted-detail green-detail accent-detail ">
-            <b>Precio: ${formatMoney(parseInt(orderDetails.price))}</b>
+            <b>
+              Total del pedido: $
+              {formatMoney(parseInt(orderDetails.orderTotal))}
+            </b>
           </div>
         </div>
-        <div className="order-details-info">
-          <ul>
-            <li>
-              <b>Título:</b> {orderDetails.title}
-            </li>
-            <li>
-              <b>Nivel academico:</b> {orderDetails.type}
-            </li>
-            <li>
-              <b>Materia o disciplina:</b> {orderDetails.class}
-            </li>
-            <li>
-              <b>Paginas:</b> {orderDetails.pages}
-            </li>
-            <li>
-              <b>Formato:</b> {orderDetails.format}
-            </li>
-            <li>
-              <b>Interlineado:</b> {orderDetails.spacing}
-            </li>
-          </ul>
+        <div className="order-details-info margin-top20">
+          <ul></ul>
+          <p>
+            <b>Tracking ID:</b> {111234}
+          </p>
         </div>
-        <p>
-          <b>Instrucciones:</b> {orderDetails.instructions}
-        </p>
-        <div className="files-links margin-top20">
-          {orderFiles.userFileUrl === "" ? null : (
-            <a
-              href={orderFiles.userFileUrl}
-              download
-              className="highlighted-detail brand-detail accent-detail "
-            >
-              Descargar archivo de usuario
-            </a>
-          )}
-
-          {orderFiles.providerFileUrl === "" ? null : (
-            <div className="provider-files margin-top20">
-              <h2>Entrega del trabajo</h2>
-              <div className="divider90 margin-bot20"></div>
-              <a
-                href={orderFiles.providerFileUrl}
-                download
-                className="highlighted-detail brand-detail accent-detail "
-              >
-                Descargar archivo
-              </a>
-              {match.params.orderState === "completed" ? (
-                <div className="rating-container">
-                  <h4>Califica el trabajo</h4>
-                  <Rating
-                    emptySymbol={
-                      <img
-                        src={starEmpty}
-                        className="rating-icon"
-                        alt="emptyStar"
-                      />
-                    }
-                    fullSymbol={
-                      <img
-                        src={starFull}
-                        className="rating-icon"
-                        alt="fullStar"
-                      />
-                    }
-                    onChange={handleRating}
-                    initialRating={
-                      typeof orderDetails.rating !== "undefined"
-                        ? orderDetails.rating
-                        : 0
-                    }
-                  />
-                </div>
-              ) : null}
-            </div>
-          )}
-        </div>
-        <div className="transaction-links margin-top20">
-          {orderDetails.paymentDate ? null : (
-            <Link
-              to={`/payments/${orderDetails.id}`}
-              className="highlighted-detail green-detail accent-detail"
-            >
-              Pagar orden
-            </Link>
-          )}
-          {orderDetails.pendingTransaction === true &&
-          !orderDetails.paymentDate ? (
-            <Link
-              to={`/payments-response/${orderDetails.id}`}
-              className="highlighted-detail brand-detail accent-detail"
-            >
-              Ver estado de la transacción
-            </Link>
-          ) : null}
+        <div className={classes.root}>
+          <Stepper activeStep={activeStep} alternativeLabel>
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel>{label}</StepLabel>
+              </Step>
+            ))}
+          </Stepper>
         </div>
       </div>
     );
@@ -511,7 +457,7 @@ const OrderDetails = ({ match, history }) => {
 
     return (
       <div key="order-chat">
-        <h1>Chat del pedido</h1>
+        <h3>Notas del pedido</h3>
         <div className="order-chat-container">
           <div
             className="order-messages-container overflow-panel-y"
@@ -534,61 +480,64 @@ const OrderDetails = ({ match, history }) => {
               );
             })}
           </div>
-          <div className="flex-panel flex-ver-center order-input-container flex-hor-evenly">
-            <TextField
-              name="message"
-              variant="outlined"
-              label="Mensaje"
-              size="small"
-              autoComplete="off"
-              onChange={handleChange}
-              className="input-field width80"
-              disabled={disabledInputs.message}
-              value={inputs.message}
-            />
-            <Button
-              variant="contained"
-              className="send-message-btn"
-              onClick={sendMessage}
-              disableElevation
-              disabled={disabledInputs.message}
-            >
-              <SendIcon />
-            </Button>
-          </div>
+
+          {userC.user.currentUser.isAdmin ? (
+            <div className="flex-panel flex-ver-center order-input-container flex-hor-evenly">
+              <TextField
+                name="message"
+                variant="outlined"
+                label="Mensaje"
+                size="small"
+                autoComplete="off"
+                onChange={handleChange}
+                className="input-field width80"
+                disabled={disabledInputs.message}
+                value={inputs.message}
+              />
+              <Button
+                variant="contained"
+                className="send-message-btn"
+                onClick={sendMessage}
+                disableElevation
+                disabled={disabledInputs.message}
+              >
+                <SendIcon />
+              </Button>
+            </div>
+          ) : null}
         </div>
       </div>
     );
   };
 
-  const providerSubpanel = () => {
-    if (userC.user.currentUser && userC.user.currentUser.isProvider) {
-      if (match.params.orderState === "pendingClaim") {
-        return (
-          <div key="claim-btn" className="userRole-panel padding10">
-            <h2>Proveedor</h2>
-            <div className="divider90 margin-bot20"></div>
-            <Button
-              variant="contained"
-              color="primary"
-              disableElevation
-              onClick={claimOrder}
-              disabled={disabledInputs.claimBtn}
-            >
-              Reclamar orden
-            </Button>
-          </div>
-        );
-      }
-    }
-  };
+  // const providerSubpanel = () => {
+  //   if (userC.user.currentUser && userC.user.currentUser.isProvider) {
+  //     if (match.params.orderState === "pendingClaim") {
+  //       return (
+  //         <div key="claim-btn" className="userRole-panel padding10">
+  //           <h2>Proveedor</h2>
+  //           <div className="divider90 margin-bot20"></div>
+  //           <Button
+  //             variant="contained"
+  //             color="primary"
+  //             disableElevation
+  //             onClick={claimOrder}
+  //             disabled={disabledInputs.claimBtn}
+  //           >
+  //             Reclamar orden
+  //           </Button>
+  //         </div>
+  //       );
+  //     }
+  //   }
+  // };
 
   const adminSubpanel = () => {
     if (userC.user.currentUser && userC.user.currentUser.isAdmin) {
       if (match.params.orderState === "pendingPayment") {
         return (
           <div key="pay-container" className="userRole-panel padding10">
-            <h2>Administrador</h2>
+            <h3>Administrador</h3>
             <div className="divider90 margin-bot20"></div>
             <Button
               variant="contained"
@@ -605,7 +554,7 @@ const OrderDetails = ({ match, history }) => {
         );
       } else {
         return (
-          <div key="assign-container" className=" userRole-panel padding10">
+          <div key="assign-container" className="userRole-panel padding10">
             <h2>Administrador</h2>
             <div className="divider90 margin-bot20"></div>
             <div className="order-contacts-container">
@@ -616,58 +565,88 @@ const OrderDetails = ({ match, history }) => {
                 <b>Celular usuario:</b> {orderContactInfo.userPhone}
               </p>
               <div className="divider50 inner-divider"></div>
-
-              {orderContactInfo.provEmail !== "" ? (
-                <div>
-                  <p>
-                    <b>Correo proveedor:</b> {orderContactInfo.provEmail}
-                  </p>
-                  <p>
-                    <b>Celular proveedor:</b> {orderContactInfo.provPhone}
-                  </p>
-                </div>
-              ) : null}
             </div>
-            {orderFiles.providerFileUrl === "" ||
-            match.params.orderState === "completed" ? null : (
+
+            <div className="admin-inputs-container">
+              <DatePicker
+                size="small"
+                autoOk
+                inputVariant="outlined"
+                inputProps={{ disabled: true }}
+                openTo="year"
+                views={["year", "month"]}
+                label="Fecha de entrega"
+                value={dateFilter}
+                format="MM/yyyy"
+                onChange={setDate}
+                InputProps={{
+                  endAdornment:
+                    dateFilter == null ? (
+                      <InputAdornment position="end">
+                        <DateRangeIcon />
+                      </InputAdornment>
+                    ) : (
+                      <div>
+                        <IconButton
+                          onClick={(e) => {
+                            setDate(null);
+                            e.stopPropagation();
+                          }}
+                          size="small"
+                        >
+                          <ClearIcon />
+                        </IconButton>
+                        <InputAdornment position="end">
+                          <DateRangeIcon />
+                        </InputAdornment>
+                      </div>
+                    ),
+                }}
+              />
               <Button
                 variant="contained"
                 color="primary"
                 disableElevation
-                onClick={() => {
-                  handleModalConfirmation("approveOrder");
-                }}
-                disabled={disabledInputs.approveOrder}
-                className="input-margin-bot approveBtn"
+                onClick={() => {}}
+                disabled={disabledInputs.assignProv}
               >
-                Aprobar entrega
+                Actualizar fecha de entrega
               </Button>
-            )}
-            {match.params.orderState === "completed" ? null : (
-              <div>
-                <TextField
-                  name="provider"
-                  variant="outlined"
-                  label="Correo del nuevo proveedor"
-                  size="small"
-                  autoComplete="off"
-                  onChange={handleChange}
-                  className="input-field width80 input-margin-bot"
-                  value={inputs.provider}
-                />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  disableElevation
-                  onClick={() => {
-                    handleModalConfirmation("assignProvider");
-                  }}
-                  disabled={disabledInputs.assignProv}
-                >
-                  Asignar proveedor
-                </Button>
-              </div>
-            )}
+            </div>
+            <div className="divider50 inner-divider"></div>
+            <div className="admin-inputs-container">
+              <TextField
+                name="tracking"
+                variant="outlined"
+                label="Tracking ID"
+                size="small"
+                autoComplete="off"
+                onChange={handleChange}
+                className="input-field  input-margin-bot"
+                value={inputs.trackingID}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                disableElevation
+                onClick={() => {}}
+                disabled={disabledInputs.assignProv}
+              >
+                Agregar nuevo tracking ID
+              </Button>
+            </div>
+            <div className="divider50 inner-divider"></div>
+            <div className="admin-inputs-container">
+              <Button
+                variant="contained"
+                className="deliver-btn"
+                disableElevation
+                onClick={() => {}}
+                disabled={disabledInputs.assignProv}
+              >
+                Marcar como entregado
+              </Button>
+            </div>
           </div>
         );
       }
@@ -700,10 +679,10 @@ const OrderDetails = ({ match, history }) => {
             <div>No estas autorizado para ver este contenido</div>
           )}
         </div>
-        <div className="order-details-panel-fullwidth flex-panel flex-hor-evenly">
+        <div className="order-details-panel-fullwidth flex-panel">
           {isVisible ? (
             orderDetails.createdAt ? (
-              [adminSubpanel(), providerSubpanel()]
+              [adminSubpanel()]
             ) : (
               "Cargando..."
             )

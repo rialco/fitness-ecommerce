@@ -68,19 +68,50 @@ const AboutPage = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <div>
-                <h4>WELCOME TO OUR GYM</h4>
+                <h4>ISABELLA QUIRÓS</h4>
                 <p>
-                  On her way she met a copy. The copy warned the Little Blind
-                  Text, that where it came from it would have been rewritten a
-                  thousand times and everything that was left from its origin
-                  would be the word "and" and the Little Blind Text should turn
-                  around and return to its own, safe country.
+                  Mejor conocida como IsaQ (IsaCu). Apasionada por los deportes,
+                  empezó a practicar futbol desde los 5 años. Fue miembro del
+                  equipo panameño que representó a Centroamérica y el Caribe en
+                  la Copa Fox Kids celebrada en Holanda en el 2003. A los 14
+                  años fue invitada a participar en los entrenamientos de la
+                  selección femenina sub-20 panameña. Se destacó como miembro
+                  del equipo panameño de tennis de mesa en el torneo CODICADER
+                  2007.
+                </p>
+                <p>
+                  Cursó seminarios y entrenamientos de Crossfit en los Estados
+                  Unidos, y con su equipo obtuvo el primer puesto en
+                  competencias a nivel nacional.
+                </p>
+                <p>
+                  En sus primeros años como entrenadora (2012), atendió
+                  diferentes grupos de hasta 30 personas y dirigió múltiples
+                  bootcamps. Atleta patrocinada por Nike desde el 2015.
+                </p>
+                <p>
+                  A inicios del 2019 creó su programa online Gym & Tone It. A
+                  finales del mismo año, lanzó su programa insignia, Home & Tone
+                  It, y su propia marca de ropa, Hit Urban.
+                </p>
+                <p>
+                  Apasionada por servir a otros y aportar positivamente al
+                  bienestar físico y emocional de las personas. Amante de los
+                  animales y en constante lucha contra el maltrato, ha
+                  colaborado con múltiples fundaciones y activistas de diversas
+                  causas.
+                </p>
+                <p>
+                  Terminó sus estudios en psicología en el 2017 y obtuvo
+                  certificaciones en HIT, Les Mills Grit, Plant Based Nutrition
+                  de la Universidad E-Cornell y como Strength & Conditioning
+                  Specialist de la International Sports Sciences Association.
                 </p>
               </div>
             </Grid>
           </Grid>
         </div>
-
+        {/** 
         <div className="about-first section">
           <Grid container spacing={2} className={classes.gridSize2}>
             <Grid item xs={12} sm={6} md={3} className={`${classes.gridCol}`}>
@@ -135,6 +166,7 @@ const AboutPage = () => {
             </Grid>
           </Grid>
         </div>
+        */}
 
         <div className="about-third section">
           <Grid
@@ -153,12 +185,12 @@ const AboutPage = () => {
               <div className="team-card card1">
                 <div className="team-overlay ">
                   <div>
-                    <h4>Crossfit King</h4>
+                    <h4>The marketing guru</h4>
                     <div className="content">
-                      <h5>Daniela Gomez</h5>
-                      On her way she met a copy. The copy warned the Little
-                      Blind Text, that where it came from it would have been
-                      rewritten a thousand times and everything
+                      <h5>Francesca Arrazola</h5>
+                      Graduada de ¨Magna Cum Laude¨ en mercadeo de la
+                      universidad Johnson & Wales. Apasionada por la atención al
+                      detalle y la impecable atención al cliente.
                     </div>
                   </div>
                 </div>
@@ -169,12 +201,12 @@ const AboutPage = () => {
               <div className="team-card card2">
                 <div className="team-overlay ">
                   <div>
-                    <h4>Yoga Guru</h4>
+                    <h4>The business master mind</h4>
                     <div className="content">
-                      <h5>Daniela Gomez</h5>
-                      On her way she met a copy. The copy warned the Little
-                      Blind Text, that where it came from it would have been
-                      rewritten a thousand times and everything
+                      <h5>Alberto Quiros</h5>
+                      Abogado, publicista y consultor de empresas. Dirigente
+                      gremial con post grado en Administración, Finanzas y
+                      Mercadeo Estratégico de INCAE.
                     </div>
                   </div>
                 </div>
@@ -192,8 +224,8 @@ const AboutPage = () => {
           >
             <Grid item xs={12} className={classes.centered}>
               <div>
-                <h5>ACHIEVE YOUR DREAM BODY</h5>
-                <h2>ARE YOU READY TO TAKE THE LEAP?</h2>
+                <h5>WHAT ARE YOU WAITING FOR..</h5>
+                <h2>READY TO JOIN THE HIT CLUB?</h2>
                 <Button
                   variant="contained"
                   className={`${classes.whiteBtn} white-cta-btn`}

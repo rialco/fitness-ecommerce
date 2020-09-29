@@ -64,6 +64,23 @@ $grey-background: #f4f4f4;
   .home-carousel-container {
     background-color: white;
     height: 500px;
+    width: 100%;
+
+    color: white;
+    //background: linear-gradient(to bottom, #fd0054, #ffac41);
+    background-color: #fd0054;
+    position: relative;
+
+    .quotes-bg {
+      position: absolute;
+      height: 100%;
+      padding: 50px;
+      opacity: 0.1;
+      z-index: 1;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
     .arrow-container {
       svg {
@@ -73,6 +90,7 @@ $grey-background: #f4f4f4;
     }
 
     .carousel {
+      z-index: 2;
       transition: 0.5s;
       .carousel-content {
         p {

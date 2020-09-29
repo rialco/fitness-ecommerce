@@ -597,6 +597,27 @@ header {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 }
 
+.global-whatsapp-container {
+  position: fixed;
+  bottom: 40px;
+  right: 0px;
+  background-color: #25d366;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 100px;
+  z-index: 110;
+  color: white;
+
+  animation: pulse 1.5s infinite;
+
+  .global-whatsapp {
+    font-size: 60px;
+  }
+}
+
 ///////////////////////////////////////////////////////////
 ////////// MODAL
 ///////////////////////////////////////////////////////////
@@ -689,9 +710,6 @@ header {
 
 .payment-container .MuiFormControl-root {
   width: 100%;
-}
-
-.payment-container .MuiTabs-flexContainer .MuiTab-root:not(:first-child) {
 }
 
 .payment-container .MuiTab-wrapper {

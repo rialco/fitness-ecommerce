@@ -10,6 +10,7 @@ import "../styles/home.styles.scss";
 
 import vid from "../assets/videos/home.mp4";
 import homeHeroImg from "../assets/isa_q03.jpg";
+import quotes from "../assets/quotes-bg.png";
 
 import gymMan from "../assets/isa_q04.png";
 import testimonial01 from "../assets/testimonial01.webp";
@@ -124,24 +125,43 @@ const Homepage = () => {
     };
     window.addEventListener("scroll", onScroll);
 
-    document.getElementById("hero-video").volume = 0.0;
+    document.getElementById("hero-video").volume = 0;
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
+    let subscriptions = [];
     const subscribeSlideCount = setInterval(() => {
-      incrementSlider();
-    }, 4000);
+      document.getElementById("testimonial-carousel").style.opacity = 0;
+      let firstTimeout = setTimeout(() => {
+        setCurrentSlide((prev) => {
+          if (prev === TESTIMONIALS.length - 1) {
+            return 0;
+          }
+          return prev + 1;
+        });
+      }, 500);
+      let secondTimeout = setTimeout(() => {
+        const c = document.getElementById("testimonial-carousel");
+        if (c !== null) {
+          c.style.opacity = 1;
+        }
+      }, 500);
+
+      subscriptions.push(firstTimeout);
+      subscriptions.push(secondTimeout);
+    }, 5000);
 
     return () => {
       clearInterval(subscribeSlideCount);
+      subscriptions.forEach((s) => clearTimeout(s));
     };
   }, []);
 
   const incrementSlider = () => {
     document.getElementById("testimonial-carousel").style.opacity = 0;
-    setTimeout(() => {
+    const firstTo = setTimeout(() => {
       setCurrentSlide((prev) => {
         if (prev === TESTIMONIALS.length - 1) {
           return 0;
@@ -149,9 +169,14 @@ const Homepage = () => {
         return prev + 1;
       });
     }, 500);
-    setTimeout(() => {
+    const secondTo = setTimeout(() => {
       document.getElementById("testimonial-carousel").style.opacity = 1;
     }, 500);
+
+    return () => {
+      clearTimeout(firstTo);
+      clearTimeout(secondTo);
+    };
   };
 
   const decrementSlider = () => {
@@ -307,6 +332,7 @@ const Homepage = () => {
         </div>
 
         <div className={`${classes.root} home-carousel-container`}>
+          <img src={quotes} alt="quotes background" className="quotes-bg" />
           <div>
             <Grid
               container

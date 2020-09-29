@@ -23,6 +23,7 @@ const OrderManager = (user, requestType, orderStates) => {
       let ordersRef = () => {
         switch (requestType) {
           case "user":
+            console.log(coll);
             return firestore.collection(coll).where("user", "==", user.uid);
           case "provider-browse":
             return firestore.collection(coll);
@@ -40,9 +41,11 @@ const OrderManager = (user, requestType, orderStates) => {
       const unsubscribeOrders = ordersRef()
         .orderBy("createdAt", "desc")
         .onSnapshot((snapshot) => {
+          console.log(snapshot.docs);
           setOrders((prevOrders) => {
             let items = [];
             snapshot.docs.forEach((doc, orderIdx) => {
+              console.log(doc);
               let newOrder = {};
               const orderDate = moment(doc.data().createdAt).format(
                 "ddd DD/MM/YY"
@@ -50,8 +53,8 @@ const OrderManager = (user, requestType, orderStates) => {
               newOrder = {
                 ...doc.data(),
                 orderID: doc.id,
-                title: doc.data().title,
-                price: "$ " + formatMoney(parseInt(doc.data().price)),
+                ID: doc.id,
+                price: "$ " + formatMoney(parseInt(doc.data().orderTotal)),
                 createdAt: orderDate.toLocaleString(),
 
                 paymentDate: doc.data().paymentDate

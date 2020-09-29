@@ -11,6 +11,9 @@ const TableCell = ({ cell, values }) => {
   const tableContext = useTable();
   const tableUpdateContext = useTableUpdate();
 
+  console.log(cell);
+  console.log(values);
+
   const handleChange = (event) => {
     if (tableUpdateContext) {
       tableUpdateContext.updateItems(

@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 //import { Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
+import "../styles/shop.styles.scss";
+
 const useStyles = makeStyles((theme) => ({
   gridSize: {
     width: "90%",
@@ -22,8 +24,8 @@ const ShopPage = () => {
   const classes = useStyles();
 
   return (
-    <div className="about primary-template">
-      <div className="hero about-hero">
+    <div className="shop primary-template">
+      <div className="hero shop-hero">
         <div className="hero-overlay">
           <div className="hero-content" id="hero-content">
             <h2>Isabella Quirós</h2>

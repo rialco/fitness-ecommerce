@@ -32,9 +32,9 @@ const Navbar = () => {
           </div>
           <div className="nav-links">
             <Link to="/">Home</Link>
-            <Link to="/shop">Shop</Link>
-            <Link to="/online-programs">Online Programs</Link>
             <Link to="/about">About</Link>
+            <Link to="/online-programs">Online Programs</Link>
+            <Link to="/shop">Shop</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </nav>

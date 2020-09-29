@@ -293,6 +293,22 @@ $main-color: #e4024d;
   margin-right: 4px;
 }
 
+.admin-inputs-container {
+  .MuiTextField-root {
+    display: block;
+    margin-bottom: 10px;
+    width: 50%;
+  }
+  .MuiInputBase-root {
+    width: 100%;
+  }
+
+  .deliver-btn {
+    background-color: #1aab59;
+    color: white;
+  }
+}
+
 ///////////////////////////////////////////////////////////
 ////////// ORDER MESSAGES
 ///////////////////////////////////////////////////////////

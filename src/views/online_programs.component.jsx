@@ -116,6 +116,7 @@ const OnlinePrograms = () => {
                       <li>Healthy Tips</li>
                       <li>Monthly Giveaway Challenge </li>
                       <li>Monthly Discounts (Comercios en Panamá)</li>
+                      <li></li>
                     </ul>
 
                     <h6>EQUIPMENT NEEDED</h6>
@@ -124,7 +125,11 @@ const OnlinePrograms = () => {
                         Acceso a gimnasio equipado (Con 20+ máquinas de pesas)
                       </li>
                     </ul>
-                    <Button variant="contained" color="primary" className="btn">
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className="btn gym-btn"
+                    >
                       SIGN UP NOW
                     </Button>
                   </div>

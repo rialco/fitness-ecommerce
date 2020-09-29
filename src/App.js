@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import DateFnsUtils from "@date-io/date-fns";
 import esLocale from "date-fns/locale/es";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
+import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 
 import "./styles/global/global.styles.scss";
 //import "./styles/global-info.styles.scss";
@@ -354,6 +355,10 @@ function App({ location, history }) {
                 }}
               />
             </Switch>
+
+            <div className="global-whatsapp-container">
+              <WhatsAppIcon className="global-whatsapp" />
+            </div>
           </div>
         </UserContext.Provider>
       </MuiThemeProvider>

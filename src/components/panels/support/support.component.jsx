@@ -97,7 +97,6 @@ const Support = () => {
             <TextField
               name="orderID"
               label="ID de la orden (Opcional)"
-              variant="outlined"
               size="small"
               onChange={handleChange}
               value={input.orderID}
@@ -108,7 +107,6 @@ const Support = () => {
             <TextField
               name="subject"
               label="Asunto"
-              variant="outlined"
               size="small"
               onChange={handleChange}
               value={input.subject}
@@ -125,7 +123,6 @@ const Support = () => {
               rows={10}
               name="description"
               label="Descripción del problema"
-              variant="outlined"
               size="small"
               onChange={handleChange}
               value={input.description}

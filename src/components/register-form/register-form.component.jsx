@@ -83,6 +83,8 @@ const Register = () => {
           lastName: input.lastName,
           email: input.email,
           phone: input.phone,
+          nationality: input.nationality,
+          gender: input.gender,
         };
         await createUserDocument(user, userData);
       } catch (error) {
