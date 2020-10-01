@@ -1,6 +1,42 @@
 .about {
   .about-hero {
-    background-image: url("../assets/hero-about.jpg");
+    background-image: url("../assets/about-hero.jpg");
+    height: 80vh;
+    background-attachment: scroll;
+    background-position: center;
+
+    .hero-content {
+      width: max-content;
+      color: white;
+      text-align: left;
+      position: static;
+      top: 0;
+      right: 0;
+      z-index: 100;
+
+      h2 {
+        font-size: 80px;
+        text-shadow: 3px 3px 6px rgba($color: #000000, $alpha: 0.4);
+        text-transform: uppercase;
+      }
+
+      h5 {
+        letter-spacing: 10px;
+        font-size: 40px;
+      }
+
+      .btn-cta {
+        font-size: 20px;
+        font-weight: 700;
+        width: 300px;
+        margin-top: 20px;
+      }
+    }
+  }
+
+  .about-first {
+    //border-top: 10px solid #fd0054;
+    border-bottom: 10px solid #fd0054;
   }
 
   .icon-column {
@@ -18,6 +54,11 @@
       letter-spacing: 2px;
       text-transform: uppercase;
     }
+  }
+
+  .page-content {
+    margin-top: calc(80vh - 40px);
+    z-index: 10;
   }
 
   .section ~ .about-third {

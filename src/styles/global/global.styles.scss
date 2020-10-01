@@ -197,7 +197,7 @@ header {
 
       h2 {
         font-size: 100px;
-        text-shadow: 3px 3px 6px rgba($color: #000000, $alpha: 0.8);
+        text-shadow: 3px 3px 6px rgba($color: #000000, $alpha: 0.4);
         text-transform: uppercase;
         letter-spacing: 4px;
       }
@@ -266,31 +266,32 @@ header {
 .primary-template {
   .hero {
     z-index: 1;
-    height: 45vh;
+    height: 80vh;
 
     .hero-content {
+      width: max-content;
       color: white;
-      text-align: center;
-      position: fixed;
-      left: 0;
-      top: 25vh;
+      text-align: left;
+      position: static;
+      top: 0;
       right: 0;
       z-index: 100;
 
       h2 {
-        font-size: 60px;
-        text-shadow: 3px 3px 6px rgba($color: #000000, $alpha: 0.8);
+        font-size: 80px;
+        text-shadow: 3px 3px 6px rgba($color: #000000, $alpha: 0.4);
         text-transform: uppercase;
       }
 
       h5 {
         letter-spacing: 10px;
+        font-size: 40px;
       }
     }
   }
 
   .page-content {
-    margin-top: calc(45vh - 40px);
+    margin-top: calc(80vh - 40px);
     z-index: 10;
 
     .section {
@@ -311,6 +312,28 @@ header {
   margin-top: 20px;
 }
 
+.heading-container {
+  position: relative;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    z-index: 100;
+  }
+
+  .heading-highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    height: 70px;
+    width: 100px;
+    background-color: #fd0054;
+  }
+}
+
 .homepage,
 .primary-template {
   .flex-panel {
@@ -319,14 +342,11 @@ header {
     flex-wrap: nowrap;
   }
   .icon-container {
-    padding: 20px;
-    background-color: #fd0054;
-    background-color: #ffac41;
-    background: linear-gradient(to bottom right, #fd0054, #ffac41);
+    padding: 10px;
   }
 
   .icon-container span {
-    color: white;
+    color: #fd0054;
   }
 
   .rounded-icon-container {
@@ -337,7 +357,9 @@ header {
     justify-content: center;
     padding: 0;
     border-radius: 100%;
-    background: linear-gradient(to bottom right, #fd0054, #ffac41);
+    //border: 1px solid white;
+    //background: linear-gradient(to bottom right, #fd0054, #ffac41);
+    background-color: #fd0054;
 
     position: absolute;
     left: 50%;
@@ -353,7 +375,7 @@ header {
   }
 
   [class^="flaticon-"]:before {
-    font-size: 40px;
+    font-size: 50px;
     margin-left: 0;
   }
 }

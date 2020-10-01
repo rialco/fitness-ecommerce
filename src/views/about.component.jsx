@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 
 import "../styles/about.styles.scss";
 
-import isabella from "../assets/4760-2.jpg";
+import isabella from "../assets/about-01.png";
 
 const useStyles = makeStyles((theme) => ({
   gridSize: {
@@ -14,6 +14,11 @@ const useStyles = makeStyles((theme) => ({
   },
   gridSize2: {
     width: "60%",
+    margin: "auto",
+    padding: "20px",
+  },
+  gridSizeHero: {
+    width: "50%",
     margin: "auto",
     padding: "20px",
   },
@@ -41,16 +46,30 @@ const AboutPage = () => {
     <div className="about primary-template">
       <div className="hero about-hero">
         <div className="hero-overlay">
-          <div className="hero-content" id="hero-content">
-            <h2>Isabella Quirós</h2>
-            <h5>THE TRAINER</h5>
-          </div>
+          <Grid
+            container
+            spacing={4}
+            className={classes.gridSizeHero}
+            alignItems="center"
+          >
+            <Grid item xs={6}>
+              <div className="hero-content ">
+                <h2>Isabella Quirós</h2>
+                <h5>THE TRAINER</h5>
+                <Button variant="contained" color="primary" className="btn-cta">
+                  LEARN ABOUT ISA
+                </Button>
+              </div>
+            </Grid>
+            <Grid item xs={6}></Grid>
+          </Grid>
         </div>
       </div>
       <div className="page-content">
+        {/**
         <div className="skew-c"></div>
-
-        <div className="about-second section">
+      */}
+        <div className="about-first section">
           <Grid
             container
             spacing={4}
@@ -111,62 +130,6 @@ const AboutPage = () => {
             </Grid>
           </Grid>
         </div>
-        {/** 
-        <div className="about-first section">
-          <Grid container spacing={2} className={classes.gridSize2}>
-            <Grid item xs={12} sm={6} md={3} className={`${classes.gridCol}`}>
-              <div className="icon-column">
-                <div className="icon-container">
-                  <span className="flaticon-ruler"></span>
-                </div>
-                <h4>ANALYZE YOUR GOAL</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut dolore facilisis.
-                </p>
-              </div>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={3} className={`${classes.gridCol}`}>
-              <div className="icon-column">
-                <div className="icon-container">
-                  <span className="flaticon-lose-weight "></span>
-                </div>
-                <h4>ACHIEVE YOUR PERFECT BODY</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut dolore facilisis.
-                </p>
-              </div>
-            </Grid>
-
-            <Grid item xs={12} sm={6} md={3} className={`${classes.gridCol}`}>
-              <div className="icon-column">
-                <div className="icon-container">
-                  <span className="flaticon-weights"></span>
-                </div>
-                <h4>WORK HARD ON IT</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut dolore facilisis.
-                </p>
-              </div>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3} className={`${classes.gridCol}`}>
-              <div className="icon-column">
-                <div className="icon-container">
-                  <span className="flaticon-ruler"></span>
-                </div>
-                <h4>Modern equipment</h4>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut dolore facilisis.
-                </p>
-              </div>
-            </Grid>
-          </Grid>
-        </div>
-        */}
 
         <div className="about-third section">
           <Grid

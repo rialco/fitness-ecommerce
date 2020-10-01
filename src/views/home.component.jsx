@@ -5,14 +5,16 @@ import Grid from "@material-ui/core/Grid";
 import PlayCircleOutlineOutlinedIcon from "@material-ui/icons/PlayCircleOutlineOutlined";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
+import Modal from "@material-ui/core/Modal";
+
+import LazyLoad from "react-lazyload";
 
 import "../styles/home.styles.scss";
 
 import vid from "../assets/videos/home.mp4";
 import homeHeroImg from "../assets/isa_q03.jpg";
-import quotes from "../assets/quotes-bg.png";
 
-import gymMan from "../assets/isa_q04.png";
+import gymMan from "../assets/home01.png";
 import testimonial01 from "../assets/testimonial01.webp";
 import testimonial02 from "../assets/testimonial02.webp";
 import testimonial03 from "../assets/testimonial03.webp";
@@ -105,11 +107,35 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     padding: "100px",
   },
+  paper: {
+    position: "absolute",
+    width: "70%",
+    height: "90%",
+    backgroundColor: "#fff",
+    border: "0px solid #000",
+    boxShadow: theme.shadows[5],
+  },
 }));
+
+function getModalStyle() {
+  const top = 50;
+  const left = 50;
+
+  return {
+    top: `${top}%`,
+    left: `${left}%`,
+    transform: `translate(-${top}%, -${left}%)`,
+  };
+}
 
 const Homepage = () => {
   const classes = useStyles();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [videoSound, setVideoSound] = useState(false);
+
+  // getModalStyle is not a pure function, we roll the style only on the first render
+  const [modalStyle] = React.useState(getModalStyle);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const onScroll = (e) => {
@@ -124,8 +150,6 @@ const Homepage = () => {
       ).style.transform = `scale(${scaleVal}, ${scaleVal})`;
     };
     window.addEventListener("scroll", onScroll);
-
-    document.getElementById("hero-video").volume = 0;
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -158,6 +182,15 @@ const Homepage = () => {
       subscriptions.forEach((s) => clearTimeout(s));
     };
   }, []);
+
+  useEffect(() => {
+    const vd = document.getElementById("hero-video");
+    if (videoSound) {
+      if (vd !== null) document.getElementById("hero-video").volume = 0.1;
+    } else {
+      if (vd !== null) document.getElementById("hero-video").volume = 0;
+    }
+  }, [videoSound]);
 
   const incrementSlider = () => {
     document.getElementById("testimonial-carousel").style.opacity = 0;
@@ -194,6 +227,32 @@ const Homepage = () => {
     }, 500);
   };
 
+  const toggleSound = () => {
+    setVideoSound((prev) => !prev);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const modalBody = (
+    <div style={modalStyle} className={classes.paper}>
+      <iframe
+        title="Youtube video"
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/ml6cT4AZdqI"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
+  );
+
   return (
     <div className="homepage">
       <div className="hero-video-container">
@@ -206,6 +265,30 @@ const Homepage = () => {
         >
           <source src={vid} type="video/mp4" />
         </video>
+        <span className="sound-btn" onClick={toggleSound}>
+          <svg version="1.1" x="0" y="0" viewBox="0 0 25 25">
+            <g>
+              <g xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m15.477 9.318c-.195.195-.195.512 0 .707.661.661 1.025 1.54 1.025 2.475s-.364 1.813-1.025 2.475c-.195.195-.195.512 0 .707.098.098.226.146.354.146s.256-.049.354-.146c.85-.85 1.318-1.979 1.318-3.182s-.468-2.332-1.318-3.182c-.196-.195-.513-.195-.708 0z"
+                  fill="#ffffff"
+                  data-original="#000000"
+                />
+                <path
+                  d="m19.012 6.489c-.195-.195-.512-.195-.707 0s-.195.512 0 .707c2.924 2.925 2.924 7.684 0 10.607-.195.195-.195.512 0 .707.098.098.226.146.354.146s.256-.049.354-.146c3.313-3.314 3.313-8.706-.001-12.021z"
+                  fill="#ffffff"
+                  data-original="#000000"
+                />
+                <path
+                  d="m13.222 6.051c-.171-.084-.375-.062-.527.055l-4.364 3.394h-4.329c-.276 0-.5.224-.5.5v5c0 .276.224.5.5.5h4.329l4.364 3.395c.09.069.198.105.307.105.075 0 .15-.017.22-.051.171-.084.28-.258.28-.449v-12c0-.191-.109-.365-.28-.449zm-.72 11.427-3.693-2.872c-.088-.069-.196-.106-.307-.106h-4v-4h4c.111 0 .219-.037.307-.105l3.693-2.872z"
+                  fill="#ffffff"
+                  data-original="#000000"
+                />
+              </g>
+            </g>
+          </svg>
+          Sound {videoSound ? "OFF" : "ON"}
+        </span>
 
         <div className="hero home-hero">
           <div className="hero-overlay">
@@ -233,7 +316,9 @@ const Homepage = () => {
       </div>
       */}
       <div className="page-content">
+        {/**
         <div className="skew-c"></div>
+         */}
         <div className={`home-first ${classes.root}`}>
           <Grid
             container
@@ -250,10 +335,14 @@ const Homepage = () => {
             </Grid>
             <Grid item xs={6}>
               <h5>ACHIEVE YOUR GOALS</h5>
-              <h2>WHAT WE DO?</h2>
-              <div className="flex-panel top-margin flex-ver-center flex-hor-left">
+              <h2>
+                <span className="heading-content">WHAT WE DO?</span>
+                <span className="heading-highlight "></span>
+              </h2>
+
+              <div className="flex-panel flex-ver-center flex-hor-left list-item">
                 <div className="icon-container">
-                  <span className="flaticon-ruler"></span>
+                  <span className="flaticon-checklist"></span>
                 </div>
                 <div className={`${classes.iconInfo} icon-info`}>
                   <h6>RUTINAS DINAMICAS</h6>
@@ -261,7 +350,7 @@ const Homepage = () => {
                 </div>
               </div>
 
-              <div className="flex-panel top-margin flex-ver-center flex-hor-left">
+              <div className="flex-panel flex-ver-center flex-hor-left list-item">
                 <div className="icon-container">
                   <span className="flaticon-weights"></span>
                 </div>
@@ -275,9 +364,9 @@ const Homepage = () => {
                 </div>
               </div>
 
-              <div className="flex-panel top-margin flex-ver-center flex-hor-left">
+              <div className="flex-panel flex-ver-center flex-hor-left list-item">
                 <div className="icon-container">
-                  <span className="flaticon-lose-weight "></span>
+                  <span className="flaticon-fitness-gym"></span>
                 </div>
                 <div className={`${classes.iconInfo} icon-info`}>
                   <h6>EN CASA O EN EN EL GYM</h6>
@@ -288,9 +377,9 @@ const Homepage = () => {
                 </div>
               </div>
 
-              <div className="flex-panel top-margin flex-ver-center flex-hor-left">
+              <div className="flex-panel flex-ver-center flex-hor-left list-item">
                 <div className="icon-container">
-                  <span className="flaticon-lose-weight "></span>
+                  <span className="flaticon-whatsapp"></span>
                 </div>
                 <div className={`${classes.iconInfo} icon-info`}>
                   <h6>ACOMPAÑAMIENTO PERSONALIZADO</h6>
@@ -302,10 +391,17 @@ const Homepage = () => {
                 </div>
               </div>
             </Grid>
+
+            <Grid item xs={12}>
+              <Button variant="contained" color="primary" className="btn-cta">
+                CHECK ONLINE PROGRAMS
+              </Button>
+            </Grid>
           </Grid>
         </div>
-
-        <div className="skew-c bottom"></div>
+        {/* 
+          <div className="skew-c bottom"></div>
+         */}
         <div className={`home-second ${classes.root}`}>
           <Grid container spacing={0} alignItems="center">
             <Grid item xs={12} sm={6}>
@@ -313,7 +409,7 @@ const Homepage = () => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <div className="flex-panel top-margin flex-ver-center">
-                <div className="rounded-icon-container">
+                <div className="rounded-icon-container" onClick={handleOpen}>
                   <PlayCircleOutlineOutlinedIcon />
                 </div>
                 <div className={classes.previewInfo}>
@@ -325,14 +421,20 @@ const Homepage = () => {
                     es muy clara; queremos que la gente se divierta mientras
                     logra resultados que antes creían imposibles.
                   </p>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="btn-cta"
+                  >
+                    LEARN ABOUT ISA
+                  </Button>
                 </div>
               </div>
             </Grid>
           </Grid>
         </div>
-
         <div className={`${classes.root} home-carousel-container`}>
-          <img src={quotes} alt="quotes background" className="quotes-bg" />
+          {/** <img src={quotes} alt="quotes background" className="quotes-bg" />*/}
           <div>
             <Grid
               container
@@ -351,9 +453,11 @@ const Homepage = () => {
                 <div className="carousel" id="testimonial-carousel">
                   <div className="carousel-content">
                     <p>{TESTIMONIALS[currentSlide].testimony}</p>
-                    <h6>{TESTIMONIALS[currentSlide].name}</h6>
 
-                    <img src={testimonial01} alt="testimony img" />
+                    <div className="user-card">
+                      <img src={testimonial01} alt="testimony img" />
+                      <h6>{TESTIMONIALS[currentSlide].name}</h6>
+                    </div>
                   </div>
                 </div>
               </Grid>
@@ -367,7 +471,6 @@ const Homepage = () => {
             </Grid>
           </div>
         </div>
-
         <div className={`home-third ${classes.root}`}>
           <Grid
             container
@@ -401,6 +504,31 @@ const Homepage = () => {
                 </div>
               </div>
             </Grid>
+
+            <Grid item xs={12} sm={4}>
+              <div className="pricing-column">
+                <div>
+                  <h5>PLAN 8 SEMANAS </h5>
+                  <h6>(48 RUTINAS)</h6>
+                  <h6 className="price">
+                    <span>$</span>54
+                  </h6>
+                  <h6>(Ahorro de $10.70)</h6>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className="pricing-btn"
+                  >
+                    SIGN UP NOW
+                  </Button>
+                  <ul>
+                    <li>Más ITBMS ($57.78)</li>
+                    <li>Pago recurrente bimensual</li>
+                  </ul>
+                </div>
+              </div>
+            </Grid>
+
             <Grid item xs={12} sm={4}>
               <div className="pricing-column best-value-col">
                 <div>
@@ -425,32 +553,8 @@ const Homepage = () => {
                 </div>
               </div>
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <div className="pricing-column">
-                <div>
-                  <h5>PLAN 8 SEMANAS </h5>
-                  <h6>(48 RUTINAS)</h6>
-                  <h6 className="price">
-                    <span>$</span>54
-                  </h6>
-                  <h6>(Ahorro de $10.70)</h6>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    className="pricing-btn"
-                  >
-                    SIGN UP NOW
-                  </Button>
-                  <ul>
-                    <li>Más ITBMS ($57.78)</li>
-                    <li>Pago recurrente bimensual</li>
-                  </ul>
-                </div>
-              </div>
-            </Grid>
           </Grid>
         </div>
-
         <div className="home-fourth">
           <Grid
             container
@@ -484,6 +588,15 @@ const Homepage = () => {
           </Grid>
         </div>
       </div>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+      >
+        {modalBody}
+      </Modal>
     </div>
   );
 };
